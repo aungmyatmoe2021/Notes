@@ -2,11 +2,12 @@ services:
   phpapache:
     image: php:8.0-apache
     container_name: php8_apache_app
-    command: bash -c "docker-php-ext-install pdo pdo_mysql && apache2-foreground"
+    command: bash -c "a2enmod rewrite && docker-php-ext-install pdo pdo_mysql && apache2-foreground"
     ports:
       - "5050:80"
     volumes:
       - ./src:/var/www/html
+      - ./apache.conf:/etc/apache2/conf-available/override.conf
     networks:
       - compose-net
   
