@@ -1,7 +1,5 @@
 <?php
 
-require "../Validator.php";
-
 $heading = "Create Note";
 
 // Starting bind and display data
@@ -20,6 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
             'body'=>$_POST['body'],
             'user_id'=> 1
         ]);
+        header('Location: /notes');
     }
 }
 
