@@ -7,7 +7,7 @@
       <p class="mb-4">
         <a href="/" class="text-blue-500 underline">Go Back Home</a>
       </p>
-      <h1 class="text-red-500 text-2xl font-bold">Sorry Page Not Found</h1>
+      <h1 class="text-red-500 text-2xl font-bold">You are not authorized to view it.</h1>
     </div>
   </main>
 

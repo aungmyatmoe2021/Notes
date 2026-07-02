@@ -2,12 +2,26 @@
 
 class Configure{
     protected $config = [
-        'host' => 'mysql',
-        'port' => 3306,
-        'dbname' => 'note',
-        'charset' => 'utf8mb4'
+        'DatabaseConnection' => [
+            'host' => 'mysql',
+            'port' => 3306,
+            'dbname' => 'note',
+            'charset' => 'utf8mb4'
+        ],
+        'DatabaseSecret' => [ 
+            'username' => 'root',
+            'password' => 'rootpassword'
+        ]
     ];
-    public function __construct(){
-        
+
+    protected $configSecret = [
+    ];
+
+    public function getConnection(){
+        return $this->config['DatabaseConnection'];
+    }
+
+    public function getSecret(){
+        return $this->config['DatabaseSecret'];
     }
 }
