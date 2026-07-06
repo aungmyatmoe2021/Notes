@@ -1,15 +1,16 @@
 <?php
 
-$heading = "Create Note";
+use Core\Database;
+use Core\Validator;
+
+$errors = [];
 
 // Starting bind and display data
 $db = new Database();
-$validator = new Validator();
 
 if($_SERVER['REQUEST_METHOD'] === "POST"){
-    $errors = [];
 
-    if(!$validator->checkValiation($_POST['body'], 1, 1000)){
+    if(!Validator::checkValiation($_POST['body'], 1, 1000)){
         $errors['body'] = 'A body of no more than 1,000 characters is required';
     }
 
@@ -22,4 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     }
 }
 
-require "views/note-create.view.php";
+view("notes/create.view.php",[
+    "heading" => "Create Note",
+    "errors"=> $errors
+]);

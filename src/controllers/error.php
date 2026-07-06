@@ -1,5 +1,5 @@
 <?php
 
-$heading = $errorCode . ' Error Code';
-
-require "views/{$errorCode}.view.php";
+view("{$errorCode}.view.php",[
+    "heading" => $errorCode . ' Error Code'
+]);

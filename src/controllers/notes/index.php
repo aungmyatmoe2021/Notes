@@ -1,9 +1,12 @@
 <?php
 
-$heading = "My Notes";
+use Core\Database;
 
 $db = new Database();
 
 $notes = $db->query("select * from notes where user_id = :id",["id" => 1])->findAll();
 
-require "views/notes.view.php";
+view("notes/index.view.php",[
+    "heading" => "My Notes",
+    "notes"=> $notes
+]);

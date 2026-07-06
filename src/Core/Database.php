@@ -1,6 +1,7 @@
 <?php
 
-require 'Configure.php';
+namespace Core;
+use PDO;
 class Database {
     protected $connection;
     protected $statement;

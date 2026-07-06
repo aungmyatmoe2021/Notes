@@ -24,3 +24,12 @@ function authorise($condition, $status = Response::FORBIDDEN){
         absort($status);
     }
 }
+
+function base_path($path){
+    return __DIR__ .'/../'. $path;
+}
+
+function view($path, $attributes = []){
+    extract($attributes);
+    require base_path('views'.'/'.$path);
+}

@@ -1,7 +1,7 @@
 <?php
 
-// To pass data to show in partial->header.view.php
-$heading = "Note";
+use Core\Database;
+use Core\Response;
 
 // Starting bind and display data
 $db = new Database();
@@ -15,4 +15,7 @@ $userid = 1;
 
 authorise($note['user_id'] == $userid, Response::FORBIDDEN);
 
-require "views/note.view.php";
+view("notes/show.view.php",[
+    "heading" => "Note",
+    "note"=> $note
+]);

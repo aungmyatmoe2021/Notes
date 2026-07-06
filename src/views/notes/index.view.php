@@ -1,6 +1,6 @@
-<?php require "partials/header.view.php" ?>
-<?php require "partials/nav.view.php" ?>
-<?php require "partials/banner.view.php" ?>
+<?php view("partials/header.view.php",["heading"=>$heading]) ?>
+<?php view("partials/nav.view.php") ?>
+<?php view("partials/banner.view.php",["heading"=>$heading]) ?>
   
   <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -20,4 +20,4 @@
     </div>
   </main>
 
-<?php require "partials/footer.view.php" ?>
+<?php view("partials/footer.view.php") ?>

@@ -1,5 +1,6 @@
 <?php
 
+namespace Core;
 class Configure{
     protected $config = [
         'DatabaseConnection' => [
