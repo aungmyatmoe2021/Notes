@@ -1,8 +1,8 @@
 <?php
 
-use Core\Database;
+use Core\App;
 
-$db = new Database();
+$db = App::resolve(\Core\Database::class);
 
 $notes = $db->query("select * from notes where user_id = :id",["id" => 1])->findAll();
 

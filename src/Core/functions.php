@@ -21,7 +21,8 @@ function isCheckScript($data){
 
 function authorise($condition, $status = Response::FORBIDDEN){
     if(!$condition){
-        absort($status);
+        $router = new \Core\Router();
+        $router->absort($status);
     }
 }
 

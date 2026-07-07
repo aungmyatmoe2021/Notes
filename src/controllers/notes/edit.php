@@ -13,8 +13,9 @@ $note = $db->query("select * from notes where id = :id",[
 $userid = 1;
 
 authorise($note['user_id'] == $userid, Response::FORBIDDEN);
-    
-view("notes/show.view.php",[
-    "heading" => "Note",
-    "note"=> $note
+
+view("notes/edit.view.php",[
+    "heading" => "Edit Note",
+    "note" => $note,
+    "errors"=> []
 ]);
