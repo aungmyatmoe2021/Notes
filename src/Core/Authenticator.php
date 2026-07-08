@@ -26,16 +26,15 @@ class Authenticator{
         }
 
         $this->login([
-                'email'=> $_POST['email']
+                'email'=> $_POST['email'],
+                'user_id'=> $user['id']
             ]);
         header('location: /');
         exit();
     }
 
     public function login($user){
-        $_SESSION['user'] = [
-            'email' => $user['email']
-        ];
+        $_SESSION['user'] = $user;
         session_regenerate_id(true);
     }
 
