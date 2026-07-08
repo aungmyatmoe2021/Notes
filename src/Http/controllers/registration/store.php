@@ -38,9 +38,10 @@ if($user){
         'password' => password_hash($_POST['password'],PASSWORD_BCRYPT)
     ]);
 
-    $_SESSION['user'] = [
-        'email' => $_POST['email']
-    ];
+    login([
+        'email'=> $_POST['email']
+    ]);
 
     header('location: /');
+    exit();
 }

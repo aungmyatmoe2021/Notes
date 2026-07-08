@@ -9,7 +9,9 @@
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
               <a href="/" aria-current="<?= isURL("/") ? "page" : "" ?>" class="<?= isURL("/") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-              <a href="/notes" aria-current="<?= isURL("/notes") ? "page" : "" ?>" class="<?= isURL("/notes") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium ">Notes</a>
+              <?php if($_SESSION['user'] ?? false) : ?>
+                <a href="/notes" aria-current="<?= isURL("/notes") ? "page" : "" ?>" class="<?= isURL("/notes") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium ">Notes</a>
+              <?php endif; ?>
               <a href="/about" aria-current="<?= isURL("/about") ? "page" : "" ?>" class="<?= isURL("/about") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium ">About</a>
               <a href="/contact" aria-current="<?= isURL("/contact") ? "page" : "" ?>" class="<?= isURL("/contact") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
             </div>
@@ -27,16 +29,18 @@
 
             <!-- Profile dropdown -->
             <el-dropdown class="relative ml-3">
-              <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                <span class="absolute -inset-1.5"></span>
-                <span class="sr-only">Open user menu</span>
-              </button>
-              <?php if($_SESSION['user'] ?? false) : ?>
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
-              <?php else : ?>
-                <a href="/register" class="<?= isURL("/register") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Register</a>
-                <a href="/login" class="<?= isURL("/login") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Log In</a>
-              <?php endif; ?>
+              <div>
+                <?php if($_SESSION['user'] ?? false) : ?>
+                  <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                    <span class="absolute -inset-1.5"></span>
+                    <span class="sr-only">Open user menu</span>
+                  </button>
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                <?php else : ?>
+                  <a href="/register" class="<?= isURL("/register") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Register</a>
+                  <a href="/login" class="<?= isURL("/login") ? "text-white bg-gray-900" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Log In</a>
+                <?php endif; ?>
+              </div>
 
               <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Your profile</a>
@@ -44,6 +48,15 @@
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Sign out</a>
               </el-menu>
             </el-dropdown>
+            
+            <?php if($_SESSION['user'] ?? false) : ?>
+              <div class="ml-3">
+                <form method="POST" action="/session">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Log Out</button>
+                </form>
+              </div>
+            <?php endif; ?>
           </div>
         </div>
         <div class="-mr-2 flex md:hidden">
