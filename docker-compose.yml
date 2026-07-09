@@ -1,7 +1,7 @@
 services:
   phpapache:
     image: php:8.0-apache
-    container_name: php8_apache_app 
+    container_name: server 
     command: bash -c "a2enmod rewrite && docker-php-ext-install pdo pdo_mysql && apache2-foreground"      
     ports:
       - "5050:80"
